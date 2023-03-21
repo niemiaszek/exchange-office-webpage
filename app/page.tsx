@@ -10,17 +10,19 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen flex-col items-center">
-      <div className=" sticky top-0 min-w-full bg-gray-300 py-5">
-        <h1 className="text-2xl font-bold text-gray-700 mx-auto text-center">FIFO | Kantor Wymiany Walut</h1>
+    <div className="flex min-h-screen flex-col items-center dark:bg-gray-800">
+      <div className=" sticky top-0 min-w-full bg-gray-300  py-3 md:py-5">
+        <h1 className="text-2xl md:text-3xl font-bold text-gray-700 mx-auto text-center">
+          FIFO | Kantor Wymiany Walut
+        </h1>
       </div>
 
-      <main>
+      <main className="">
         <div className="w-screen overflow-auto">
           <ExchangeTable></ExchangeTable>
         </div>
         <div className="w-screen p-3 md:p-5 md:pt-0">
-          <div className="p-2 md:p-4 rounded-md md:rounded-xl border-2 border-slate-200 dark:border-gray-700 bg-white dark:bg-slate-50">
+          <div className="p-2 md:p-4 rounded-md md:rounded-xl border-2 border-slate-200 dark:border-gray-700 bg-white dark:bg-gray-700 dark:text-white">
             <div className="grid grid-cols-2 grid-rows-2 gap-2 md:flex md:flex-row md:justify-evenly justify-items-center md:text-lg lg:text-2xl">
               <div>
                 <a>Chełm, Lwowska 9</a>
@@ -28,7 +30,7 @@ export default function Home() {
               <div>
                 <a className="inline-flex items-baseline">
                   <Image priority src={phoneIcon} alt="Phone Icon" height={24} className="self-center mr-1" />
-                  <a href="tel:502700759">502 700 750</a>
+                  <a href="tel:571929494">571 929 494</a>
                 </a>
               </div>
               <div>

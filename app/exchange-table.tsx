@@ -6,12 +6,15 @@ type Currency = {
 };
 function TableRow(currency: Currency) {
   return (
-    <tr className="odd:bg-white even:bg-slate-50 bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-      <th scope="row" className="px-2 py-1 md:px-6 md:py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+    <tr className="odd:bg-white even:bg-slate-50 bg-white border-b dark:odd:bg-gray-800 dark:even:bg-gray-700 dark:border-gray-700">
+      <th
+        scope="row"
+        className="px-2 py-1 md:px-6 md:py-2 xl:py-3 font-medium text-sm md:text-lg text-gray-900 whitespace-nowrap dark:text-white"
+      >
         {currency.representation} {currency.name}
       </th>
-      <td className="px-2 py-1 md:px-6 md:py-3">{currency.buy}</td>
-      <td className="px-2 py-1 md:px-6 md:py-3">{currency.sell}</td>
+      <td className="px-2 py-1 md:px-6 xl:py-2 2xl:py-3">{currency.buy}</td>
+      <td className="px-2 py-1 md:px-6 xl:py-2 2xl:py-3">{currency.sell}</td>
     </tr>
   );
 }
@@ -54,10 +57,7 @@ export default function ExchangeTable() {
           <tbody>{currencies.map(TableRow)}</tbody>
         </table>
         <div className="text-right pt-2">
-          <a className="text-sm md:text-lg text-gray-500">
-            ostatnia aktualizacja: <br></br>
-            18.02.2023 19:20
-          </a>
+          <a className="text-sm md:text-base text-gray-500">ostatnia aktualizacja: 18.02.2023 19:20</a>
         </div>
       </div>
     </div>
