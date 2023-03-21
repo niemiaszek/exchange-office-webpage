@@ -1,91 +1,62 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from './page.module.css'
+import Image from "next/image";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import ExchangeTable from "./exchange-table";
+import gmapsIcon from "../public/images/Google_Maps_icon.svg";
+import facebookIcon from "../public/images/Facebook_logo.svg";
+import phoneIcon from "../public/images/phone-call-icon.svg";
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <div className="flex min-h-screen flex-col items-center">
+      <div className=" sticky top-0 min-w-full bg-gray-300 py-5">
+        <h1 className="text-2xl font-bold text-gray-700 mx-auto text-center">FIFO | Kantor Wymiany Walut</h1>
+      </div>
+
+      <main>
+        <div className="w-screen overflow-auto">
+          <ExchangeTable></ExchangeTable>
         </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-        <div className={styles.thirteen}>
-          <Image src="/thirteen.svg" alt="13" width={40} height={31} priority />
+        <div className="w-screen p-3 md:p-5 md:pt-0">
+          <div className="p-2 md:p-4 rounded-md md:rounded-xl border-2 border-slate-200 dark:border-gray-700 bg-white dark:bg-slate-50">
+            <div className="grid grid-cols-2 grid-rows-2 gap-2 md:flex md:flex-row md:justify-evenly justify-items-center md:text-lg lg:text-2xl">
+              <div>
+                <a>Chełm, Lwowska 9</a>
+              </div>
+              <div>
+                <a className="inline-flex items-baseline">
+                  <Image priority src={phoneIcon} alt="Phone Icon" height={24} className="self-center mr-1" />
+                  <a href="tel:502700759">502 700 750</a>
+                </a>
+              </div>
+              <div>
+                <a
+                  className="inline-flex items-baseline"
+                  href="https://goo.gl/maps/YLYx7AYqBQfPurSv7"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Image priority src={gmapsIcon} alt="Google Maps Icon" height={24} className="self-center mr-1" />
+                  Google Maps
+                </a>
+              </div>
+              <div>
+                <a
+                  className="inline-flex items-baseline"
+                  href="https://goo.gl/maps/YLYx7AYqBQfPurSv7"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Image priority src={facebookIcon} alt="Facebook logo" height={24} className="self-center mr-1" />
+                  Facebook
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://beta.nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+      </main>
+    </div>
+  );
 }
