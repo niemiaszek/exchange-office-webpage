@@ -6,7 +6,10 @@ type Currency = {
 };
 function TableRow(currency: Currency) {
   return (
-    <tr className="odd:bg-white even:bg-slate-50 bg-white border-b dark:odd:bg-gray-800 dark:even:bg-gray-700 dark:border-gray-700">
+    <tr
+      key={currency.name}
+      className="odd:bg-white even:bg-slate-50 bg-white border-b dark:odd:bg-gray-800 dark:even:bg-gray-700 dark:border-gray-700"
+    >
       <th
         scope="row"
         className="px-2 py-1 md:px-6 md:py-2 xl:py-3 font-medium text-sm md:text-lg text-gray-900 whitespace-nowrap dark:text-white"
@@ -54,7 +57,7 @@ export default function ExchangeTable() {
               </th>
             </tr>
           </thead>
-          <tbody>{currencies.map(TableRow)}</tbody>
+          <tbody>{currencies.map((currency) => TableRow(currency))}</tbody>
         </table>
         <div className="text-right pt-2">
           <a className="text-sm md:text-base text-gray-500">ostatnia aktualizacja: 18.02.2023 19:20</a>
