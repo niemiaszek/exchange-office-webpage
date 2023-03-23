@@ -28,10 +28,10 @@ export default function Home() {
                 <a>Chełm, Lwowska 9</a>
               </div>
               <div>
-                <a className="inline-flex items-baseline">
+                <div className="inline-flex items-baseline">
                   <Image priority src={phoneIcon} alt="Phone Icon" height={24} className="self-center mr-1" />
                   <a href="tel:571929494">571 929 494</a>
-                </a>
+                </div>
               </div>
               <div>
                 <a
