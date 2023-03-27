@@ -1,5 +1,7 @@
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
+import Header from "./header";
+import Providers from "./providers";
 
 export const metadata = {
   title: "Kantor FIFO Chełm",
@@ -27,7 +29,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="pl">
       <body>
-        {children}
+        <Header />
+        <Providers>{children}</Providers>
         <Analytics />
       </body>
     </html>

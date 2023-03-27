@@ -5,21 +5,14 @@ import ExchangeTable from "./exchange-table";
 import gmapsIcon from "../public/images/Google_Maps_icon.svg";
 import facebookIcon from "../public/images/Facebook_logo.svg";
 import phoneIcon from "../public/images/phone-call-icon.svg";
-
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home() {
+export default async function Home() {
   return (
     <div className="flex min-h-screen flex-col items-center dark:bg-gray-800">
-      <div className=" sticky top-0 min-w-full bg-gray-300  py-3 md:py-5">
-        <h1 className="text-2xl md:text-3xl font-bold text-gray-700 mx-auto text-center">
-          FIFO | Kantor Wymiany Walut
-        </h1>
-      </div>
-
       <main className="">
         <div className="w-screen overflow-auto">
-          <ExchangeTable></ExchangeTable>
+          <ExchangeTable />
         </div>
         <div className="w-screen p-3 md:p-5 md:pt-0">
           <div className="p-2 md:p-4 rounded-md md:rounded-xl border-2 border-slate-200 dark:border-gray-700 bg-white dark:bg-gray-700 dark:text-white">
