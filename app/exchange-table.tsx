@@ -1,9 +1,19 @@
+import path from "path";
+import { promises as fs } from "fs";
+
 type Currency = {
   representation: string;
   name: string;
   buy: number;
   sell: number;
 };
+
+type ExchangeTableData = {
+  currencies: Currency[];
+  date: Date;
+  submitter: string;
+};
+
 function TableRow(currency: Currency) {
   return (
     <tr
@@ -21,24 +31,17 @@ function TableRow(currency: Currency) {
     </tr>
   );
 }
-export default function ExchangeTable() {
-  //   currencies: Array<currency>) {
-  const currencies: Currency[] = [
-    { representation: "🇪🇺", name: "EUR", buy: 4.1324, sell: 4.02 },
-    { representation: "🇺🇸", name: "USD", buy: 4.5, sell: 4.4 },
-    { representation: "🇨🇭", name: "CHF", buy: 4.6, sell: 4.7 },
-    { representation: "🇬🇧", name: "GBP", buy: 4.1, sell: 4.3 },
-    { representation: "🇨🇦", name: "CAD", buy: 4.1324, sell: 4.02 },
-    { representation: "🇦🇺", name: "AUD", buy: 4.5, sell: 4.4 },
-    { representation: "🇸🇪", name: "SEK", buy: 4.6, sell: 4.7 },
-    { representation: "🇳🇴", name: "NOK", buy: 4.1, sell: 4.3 },
-    { representation: "🇩🇰", name: "DKK", buy: 4.1324, sell: 4.02 },
-    { representation: "🇺🇦", name: "UAH", buy: 4.5, sell: 4.4 },
-    { representation: "🇧🇬", name: "BGN", buy: 4.1, sell: 4.3 },
-    { representation: "🇭🇺", name: "HUF", buy: 4.1324, sell: 4.02 },
-    { representation: "🇨🇿", name: "CZK", buy: 4.5, sell: 4.4 },
-    { representation: "🇷🇴", name: "RON", buy: 4.6, sell: 4.7 },
-  ];
+async function getData() {
+  const res = await fetch("http://localhost:3000/api/exchangetabledata");
+  if (!res.ok) {
+    throw new Error("Failed to fetch ExchangeTableData");
+  }
+  return res.json();
+}
+
+export default async function ExchangeTable() {
+  const data = await getData();
+  const exchangeTableData: ExchangeTableData = JSON.parse(data);
 
   return (
     <div className="p-3 md:p-5">
@@ -57,7 +60,7 @@ export default function ExchangeTable() {
               </th>
             </tr>
           </thead>
-          <tbody>{currencies.map((currency) => TableRow(currency))}</tbody>
+          <tbody>{exchangeTableData.currencies.map((currency) => TableRow(currency))}</tbody>
         </table>
         <div className="text-right pt-2">
           <a className="text-sm md:text-base text-gray-500">ostatnia aktualizacja: 18.02.2023 19:20</a>

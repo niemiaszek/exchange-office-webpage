@@ -1,26 +1,15 @@
-import { getServerSession } from "next-auth";
-import Link from "next/link";
-import { authOptions } from "../api/auth/[...nextauth]/route";
+import Head from "next/head";
+import Login from "./login";
 
-export default async function Home() {
-  const session = await getServerSession(authOptions);
-
-  const isAuthenticated = !!session;
-
+export default function Page() {
   return (
-    <div>
-      <pre>{JSON.stringify(session, null, 2)}</pre>;
-      {isAuthenticated ? (
-        <div>
-          <p>Authenticated</p>
-          <Link href="/api/auth/signout">SignOut</Link>
-        </div>
-      ) : (
-        <div>
-          <p>Not Authenticated</p>
-          <Link href="/api/auth/signin/github">SignIn</Link>
-        </div>
-      )}
-    </div>
+    <>
+      <Head>
+        <title>Login</title>
+      </Head>
+      <div className="flex min-h-screen flex-col items-center justify-center dark:bg-gray-800 p-5">
+        <Login />
+      </div>
+    </>
   );
 }

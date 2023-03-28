@@ -7,11 +7,12 @@ import facebookIcon from "../public/images/Facebook_logo.svg";
 import phoneIcon from "../public/images/phone-call-icon.svg";
 const inter = Inter({ subsets: ["latin"] });
 
-export default async function Home() {
+export default function Home() {
   return (
     <div className="flex min-h-screen flex-col items-center dark:bg-gray-800">
       <main className="">
         <div className="w-screen overflow-auto">
+          {/* @ts-expect-error Async Server Component */}
           <ExchangeTable />
         </div>
         <div className="w-screen p-3 md:p-5 md:pt-0">
