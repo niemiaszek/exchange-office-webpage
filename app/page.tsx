@@ -41,7 +41,7 @@ export default function Home() {
               <div>
                 <a
                   className="inline-flex items-baseline"
-                  href="https://goo.gl/maps/YLYx7AYqBQfPurSv7"
+                  href="https://www.facebook.com/kantor.fifo"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
