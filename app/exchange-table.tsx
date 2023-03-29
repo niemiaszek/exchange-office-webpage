@@ -32,11 +32,14 @@ function TableRow(currency: Currency) {
   );
 }
 async function getData() {
-  const res = await fetch("http://localhost:3000/api/exchangetabledata");
-  if (!res.ok) {
-    throw new Error("Failed to fetch ExchangeTableData");
-  }
-  return res.json();
+  // const res = await fetch("http://localhost:3000/api/exchangetabledata");
+  // if (!res.ok) {
+  //   throw new Error("Failed to fetch ExchangeTableData");
+  // }
+  // return res.json();
+  const jsonDirectory = path.join(process.cwd(), "data");
+  const fileContents = await fs.readFile(jsonDirectory + "/data.json", "utf8");
+  return fileContents;
 }
 
 export default async function ExchangeTable() {
