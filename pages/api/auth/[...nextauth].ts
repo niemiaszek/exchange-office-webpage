@@ -18,8 +18,14 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async signIn({ user, account, profile, email, credentials }) {
-      // let isAllowedToSignIn = false
-
+      // encrypt the whitelist with mails not to store raw mails on github...
+      // const saltRounds = 10;
+      // var hashedWhitelist = await Promise.all(whitelist.map(async whitelistEntry => {
+      //   return await bcrypt.hash(whitelistEntry, saltRounds)
+      // })
+      // )
+      // await fs.writeFile(jsonDirectory + '/hashed_whitelist.json', JSON.stringify(hashedWhitelist), 'utf8');
+      
       const jsonDirectory = path.join(process.cwd(), 'data');
       const fileContents = await fs.readFile(jsonDirectory + '/hashed_whitelist.json', 'utf8');
       const whitelist: Array<string> = JSON.parse(fileContents)
@@ -32,16 +38,8 @@ export const authOptions: NextAuthOptions = {
         }
         return isWhitelisted
       }
+
       const isAllowedToSignIn = await compareWithWhitelist(whitelist)
-      
-      
-      // encrypt the whitelist with mails not to store raw mails on github...
-      // const saltRounds = 10;
-      // var hashedWhitelist = await Promise.all(whitelist.map(async whitelistEntry => {
-      //   return await bcrypt.hash(whitelistEntry, saltRounds)
-      // })
-      // )
-      // await fs.writeFile(jsonDirectory + '/hashed_whitelist.json', JSON.stringify(hashedWhitelist), 'utf8');
 
       // if (whitelist.includes(user.email)) {isAllowedToSignIn = true}
 

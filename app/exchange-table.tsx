@@ -1,18 +1,6 @@
 import path from "path";
 import { promises as fs } from "fs";
-
-type Currency = {
-  representation: string;
-  name: string;
-  buy: number;
-  sell: number;
-};
-
-type ExchangeTableData = {
-  currencies: Currency[];
-  date: Date;
-  submitter: string;
-};
+import type { Currency, ExchangeTableData } from "../types";
 
 function TableRow(currency: Currency) {
   return (
@@ -66,7 +54,7 @@ export default async function ExchangeTable() {
           <tbody>{exchangeTableData.currencies.map((currency) => TableRow(currency))}</tbody>
         </table>
         <div className="text-right pt-2">
-          <a className="text-sm md:text-base text-gray-500">ostatnia aktualizacja: 18.02.2023 19:20</a>
+          <a className="text-sm md:text-base text-gray-500">ostatnia aktualizacja: {exchangeTableData.date}</a>
         </div>
       </div>
     </div>

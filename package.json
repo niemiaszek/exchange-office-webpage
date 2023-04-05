@@ -20,6 +20,9 @@
     "next-auth": "^0.0.0-pr.6777.c5550344",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.43.9",
+    "react-toastify": "^9.1.2",
+    "swr": "^2.1.2",
     "typescript": "4.9.4"
   },
   "devDependencies": {
