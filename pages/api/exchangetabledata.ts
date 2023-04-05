@@ -1,17 +1,19 @@
 import path from 'path';
-import { promises as fs } from 'fs';
+import fs from 'fs'
 import type {ExchangeTableData, Currency} from '../../types'
 import { getServerSession } from "next-auth/next"
 import { authOptions } from "./auth/[...nextauth]"
 
-
 export default async function handler(req, res) {
   const session = await getServerSession(req, res, authOptions)
-
+  let jsonDirectory = path.join(process.cwd(), 'data') + '/data.json';
+  if (fs.existsSync('/tmp/data.json')) {
+    jsonDirectory = 'tmp/data.json';
+  }
+  
   //Find the absolute path of the json directory
-  const jsonDirectory = path.join(process.cwd(), 'data');
   //Read the json data file data.json
-  const fileContents = await fs.readFile(jsonDirectory + '/data.json', 'utf8');
+  const fileContents = await fs.promises.readFile(jsonDirectory, 'utf8');
 
   const exchangeTableData: ExchangeTableData = JSON.parse(fileContents);
   if (req.method === 'POST') {
@@ -44,7 +46,7 @@ export default async function handler(req, res) {
         exchangeTableData.submitter = session.user.name
         exchangeTableData.date = new Date().toLocaleString("pl-PL")
       }
-      await fs.writeFile(jsonDirectory + '/data.json', JSON.stringify(exchangeTableData), 'utf8');
+      await fs.promises.writeFile('tmp/data.json', JSON.stringify(exchangeTableData), 'utf8');
       const revalidated = await fetch(`http://localhost:3000/api/revalidate?secret=${process.env.REVALIDATE}`)
       const msg = await revalidated.json()
       console.log(msg)

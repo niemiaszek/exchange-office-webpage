@@ -1,5 +1,5 @@
 import path from "path";
-import { promises as fs } from "fs";
+import fs from "fs";
 import type { Currency, ExchangeTableData } from "../types";
 
 function TableRow(currency: Currency) {
@@ -25,8 +25,14 @@ async function getData() {
   //   throw new Error("Failed to fetch ExchangeTableData");
   // }
   // return res.json();
-  const jsonDirectory = path.join(process.cwd(), "data");
-  const fileContents = await fs.readFile(jsonDirectory + "/data.json", "utf8");
+  let jsonDirectory = path.join(process.cwd(), "data") + "/data.json";
+  if (fs.existsSync("/tmp/data.json")) {
+    jsonDirectory = "tmp/data.json";
+  }
+
+  //Find the absolute path of the json directory
+  //Read the json data file data.json
+  const fileContents = await fs.promises.readFile(jsonDirectory, "utf8");
   return fileContents;
 }
 
