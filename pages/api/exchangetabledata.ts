@@ -46,7 +46,7 @@ export default async function handler(req, res) {
         exchangeTableData.submitter = session.user.name
         exchangeTableData.date = new Date().toLocaleString("pl-PL")
       }
-      await fs.promises.writeFile('tmp/data.json', JSON.stringify(exchangeTableData), 'utf8');
+      await fs.promises.writeFile('/tmp/data.json', JSON.stringify(exchangeTableData), 'utf8');
       const revalidated = await fetch(`http://localhost:3000/api/revalidate?secret=${process.env.REVALIDATE}`)
       const msg = await revalidated.json()
       console.log(msg)
