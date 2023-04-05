@@ -29,6 +29,7 @@ async function getData() {
   if (fs.existsSync("/tmp/data.json")) {
     jsonDirectory = "/tmp/data.json";
   }
+  console.log("revalidating getData...")
 
   //Find the absolute path of the json directory
   //Read the json data file data.json
