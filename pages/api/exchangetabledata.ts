@@ -8,7 +8,7 @@ export default async function handler(req, res) {
   const session = await getServerSession(req, res, authOptions)
   let jsonDirectory = path.join(process.cwd(), 'data') + '/data.json';
   if (fs.existsSync('/tmp/data.json')) {
-    jsonDirectory = 'tmp/data.json';
+    jsonDirectory = '/tmp/data.json';
   }
   
   //Find the absolute path of the json directory

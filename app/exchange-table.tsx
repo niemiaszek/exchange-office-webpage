@@ -27,7 +27,7 @@ async function getData() {
   // return res.json();
   let jsonDirectory = path.join(process.cwd(), "data") + "/data.json";
   if (fs.existsSync("/tmp/data.json")) {
-    jsonDirectory = "tmp/data.json";
+    jsonDirectory = "/tmp/data.json";
   }
 
   //Find the absolute path of the json directory
