@@ -28,20 +28,20 @@ async function getData() {
   let jsonDirectory = path.join(process.cwd(), "data") + "/data.json";
   if (fs.existsSync("/tmp/data.json")) {
     jsonDirectory = "/tmp/data.json";
+    console.log("file exists...")
   }
   
 
   //Find the absolute path of the json directory
   //Read the json data file data.json
   const fileContents = await fs.promises.readFile(jsonDirectory, "utf8");
-  console.log(fileContents)
+  console.log("revalidating get data...")
   return fileContents;
 }
 
 export default async function ExchangeTable() {
   const data = await getData();
   const exchangeTableData: ExchangeTableData = JSON.parse(data);
-  console.log(exchangeTableData)
 
   return (
     <div className="p-3 md:p-5">
