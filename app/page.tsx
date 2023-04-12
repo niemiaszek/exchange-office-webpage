@@ -7,8 +7,6 @@ import facebookIcon from "../public/images/Facebook_logo.svg";
 import phoneIcon from "../public/images/phone-call-icon.svg";
 const inter = Inter({ subsets: ["latin"] });
 
-export const revalidate = 15
-
 export default function Home() {
   return (
     <div className="flex min-h-screen flex-col items-center dark:bg-gray-800">
