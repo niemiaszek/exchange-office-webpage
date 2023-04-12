@@ -93,12 +93,15 @@ export default function Form() {
             return (
               <div key={currency.name} className="flex flex-row p-5 text-lg">
                 <div className="px-2 flex-row justify-center">
-                  <label className="block" htmlFor={nameBuy}>
+                  <label
+                    className="block font-twemoji font-medium text-base md:text-xl lg:text-3xl text-gray-900 dark:text-white"
+                    htmlFor={nameBuy}
+                  >
                     {nameBuy}
                   </label>
                   <input
                     type="number"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="text-base md:text-xl lg:text-3xl bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     step="0.01"
                     placeholder={String(currency.buy)}
                     {...register(nameBuy)}
@@ -106,12 +109,15 @@ export default function Form() {
                   <div className="error">{errors[nameBuy]?.message}</div>
                 </div>
                 <div>
-                  <label className="block" htmlFor={nameSell}>
+                  <label
+                    className="block font-twemoji font-medium text-base md:text-xl lg:text-3xl text-gray-900 dark:text-white"
+                    htmlFor={nameSell}
+                  >
                     {nameSell}
                   </label>
                   <input
                     type="number"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="text-base md:text-xl lg:text-3xl bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     step="0.01"
                     placeholder={String(currency.sell)}
                     {...register(nameSell)}
