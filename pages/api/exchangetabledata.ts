@@ -1,21 +1,42 @@
-import path from 'path';
-import fs from 'fs'
 import type {ExchangeTableData, Currency} from '../../types'
 import { getServerSession } from "next-auth/next"
 import { authOptions } from "./auth/[...nextauth]"
+import {
+  S3Client,
+  GetObjectCommand,
+  PutObjectCommand,
+} from "@aws-sdk/client-s3";
 
 export default async function handler(req, res) {
   const session = await getServerSession(req, res, authOptions)
-  let jsonDirectory = path.join(process.cwd(), 'data') + '/data.json';
-  if (fs.existsSync('/tmp/data.json')) {
-    jsonDirectory = '/tmp/data.json';
-  }
+  // let jsonDirectory = path.join(process.cwd(), 'data') + '/data.json';
+  // if (fs.existsSync('/tmp/data.json')) {
+  //   jsonDirectory = '/tmp/data.json';
+  // }
   
   //Find the absolute path of the json directory
   //Read the json data file data.json
-  const fileContents = await fs.promises.readFile(jsonDirectory, 'utf8');
+  // const fileContents = await fs.promises.readFile(jsonDirectory, 'utf8');
 
-  const exchangeTableData: ExchangeTableData = JSON.parse(fileContents);
+  const S3 = new S3Client({
+    region: "auto",
+    endpoint: `https://${process.env.CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com`,
+    credentials: {
+      accessKeyId: process.env.CLOUDFLARE_ACCESS_KEY_ID,
+      secretAccessKey: process.env.CLOUDFLARE_SECRET_ACCESS_KEY,
+    },
+  });
+  let dataStr = ""
+  try {
+    const data = await S3.send(
+      new GetObjectCommand({ Bucket: process.env.CLOUDFLARE_BUCKET_ID_DATA, Key: "data.json" })
+    );
+    dataStr = await data.Body?.transformToString();
+  } catch (error) {
+    console.log(error);
+    throw new Error("Failed to fetch ExchangeTableData");
+  }
+  const exchangeTableData: ExchangeTableData = JSON.parse(dataStr);
   if (req.method === 'POST') {
     try {
       let result = ""
@@ -35,7 +56,6 @@ export default async function handler(req, res) {
         
         for (const currency of exchangeTableData.currencies) {
           if (currency.name === updatedCurrencyName){
-            console.log(currency.name)
             if (updatedProperty === "Buy") {
               currency.buy = updatedValue
             } else if (updatedProperty === "Sell"){
@@ -46,7 +66,8 @@ export default async function handler(req, res) {
         exchangeTableData.submitter = session.user.name
         exchangeTableData.date = new Date().toLocaleString("pl-PL")
       }
-      await fs.promises.writeFile('/tmp/data.json', JSON.stringify(exchangeTableData), 'utf8');
+      await S3.send(new PutObjectCommand({Body: JSON.stringify(exchangeTableData), Bucket: process.env.CLOUDFLARE_BUCKET_ID_DATA, Key: "data.json" }))
+      // await fs.promises.writeFile('/tmp/data.json', JSON.stringify(exchangeTableData), 'utf8');
       const revalidated = await fetch(`https://exchange-office-webpage.vercel.app/api/revalidate?secret=${process.env.REVALIDATE}`)
       const msg = await revalidated.json()
       console.log(msg)

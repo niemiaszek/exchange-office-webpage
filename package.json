@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.310.0",
+    "@aws-sdk/signature-v4-crt": "^3.310.0",
     "@types/node": "18.11.18",
     "@types/react": "18.0.26",
     "@types/react-dom": "18.0.10",
@@ -16,8 +18,8 @@
     "bcrypt": "^5.1.0",
     "eslint": "8.32.0",
     "eslint-config-next": "^13.2.4",
-    "next": "^13.2.5-canary.30",
-    "next-auth": "^4.21.1",
+    "next": "^13.3.0",
+    "next-auth": "^4.22.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.43.9",
@@ -30,10 +32,5 @@
     "postcss": "^8.4.21",
     "prettier": "2.8.4",
     "tailwindcss": "^3.2.4"
-  },
-  "overrides": {
-    "next-auth": {
-      "next": "^13.2.5-canary.30"
-    }
   }
 }

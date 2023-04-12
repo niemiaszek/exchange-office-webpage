@@ -2,9 +2,6 @@
 import { useSession, signOut } from "next-auth/react";
 import Form from "./form";
 import UserCard from "./user-card";
-import { FieldValues, useForm, UseFormRegister } from "react-hook-form";
-import React, { useEffect } from "react";
-import "react-toastify/dist/ReactToastify.css";
 
 export default function Dashboard() {
   const { data: session } = useSession();
