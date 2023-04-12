@@ -5,13 +5,10 @@ function TableRow(currency: Currency) {
   return (
     <tr
       key={currency.name}
-      className="odd:bg-white even:bg-slate-50 bg-white border-b dark:odd:bg-gray-800 dark:even:bg-gray-700 dark:border-gray-700"
+      className="odd:bg-white even:bg-slate-50 bg-white border-b dark:odd:bg-gray-800 dark:even:bg-gray-700 dark:border-gray-700 font-medium text-base md:text-xl lg:text-3xl"
     >
-      <th
-        scope="row"
-        className="px-2 py-1 md:px-6 md:py-2 xl:py-3 font-medium text-sm md:text-lg text-gray-900 whitespace-nowrap dark:text-white"
-      >
-        {currency.representation} {currency.name}
+      <th scope="row" className="px-2 py-1 md:px-6 md:py-2 xl:py-3 text-gray-900 whitespace-nowrap dark:text-white">
+        <a className="font-twemoji">{currency.representation}</a> {currency.name}
       </th>
       <td className="px-2 py-1 md:px-6 xl:py-2 2xl:py-3">{currency.buy}</td>
       <td className="px-2 py-1 md:px-6 xl:py-2 2xl:py-3">{currency.sell}</td>

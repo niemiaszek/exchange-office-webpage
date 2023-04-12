@@ -1,11 +1,9 @@
 import Image from "next/image";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import ExchangeTable from "./exchange-table";
 import gmapsIcon from "../public/images/Google_Maps_icon.svg";
 import facebookIcon from "../public/images/Facebook_logo.svg";
 import phoneIcon from "../public/images/phone-call-icon.svg";
-const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (

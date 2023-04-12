@@ -2,6 +2,7 @@ import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
 import Header from "./header";
 import Providers from "./providers";
+import localFont from "next/font/local";
 
 export const metadata = {
   title: "Kantor FIFO Chełm",
@@ -25,9 +26,15 @@ export const metadata = {
   },
 };
 
+const twemoji = localFont({
+  src: "../data/TwemojiCountryFlags.woff2",
+  display: "swap",
+  variable: "--font-twemoji",
+});
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pl">
+    <html lang="pl" className={`${twemoji.variable}`}>
       <body>
         <Header />
         <Providers>{children}</Providers>
