@@ -5,9 +5,9 @@ function TableRow(currency: Currency) {
   return (
     <tr
       key={currency.name}
-      className="odd:bg-white even:bg-slate-50 bg-white border-b dark:odd:bg-gray-800 dark:even:bg-gray-700 dark:border-gray-700 font-medium text-base md:text-xl lg:text-3xl text-gray-900 dark:text-white"
+      className="odd:bg-white even:bg-slate-50 bg-white border-b dark:odd:bg-gray-800 dark:even:bg-gray-700 dark:border-gray-700 font-medium text-base md:text-xl lg:text-3xl "
     >
-      <th scope="row" className="px-2 py-1 md:px-6 md:py-2 xl:py-3 whitespace-nowrap">
+      <th scope="row" className="px-2 py-1 md:px-6 md:py-2 xl:py-3 whitespace-nowrap text-gray-900 dark:text-white">
         <a className="font-twemoji">{currency.representation}</a> {currency.name}
       </th>
       <td className="px-2 py-1 md:px-6 xl:py-2 2xl:py-3">{currency.buy}</td>
@@ -57,7 +57,7 @@ export default async function ExchangeTable() {
   const exchangeTableData: ExchangeTableData = JSON.parse(data);
 
   return (
-    <div className="p-3 md:p-5">
+    <div className="w-screen p-3 md:p-5">
       <div className="p-2 md:p-4 rounded-md md:rounded-xl border-2 border-slate-200 dark:border-gray-700">
         <table className="w-full text-sm md:text-lg text-left text-gray-500 dark:text-gray-400">
           <thead className="text-xs md:text-lg lg:text-lg text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
