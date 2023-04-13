@@ -68,7 +68,7 @@ export default async function handler(req, res) {
       }
       await S3.send(new PutObjectCommand({Body: JSON.stringify(exchangeTableData), Bucket: process.env.CLOUDFLARE_BUCKET_ID_DATA, Key: "data.json" }))
       // await fs.promises.writeFile('/tmp/data.json', JSON.stringify(exchangeTableData), 'utf8');
-      const revalidated = await fetch(`https://exchange-office-webpage.vercel.app/api/revalidate?secret=${process.env.REVALIDATE}`)
+      const revalidated = await fetch(`https://kantorfifo.pl/api/revalidate?secret=${process.env.REVALIDATE}`)
       const msg = await revalidated.json()
       console.log(msg)
       result = "Success"
