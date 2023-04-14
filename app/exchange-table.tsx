@@ -32,7 +32,7 @@ function TableRow(currency: Currency) {
         <span className="tooltip rounded shadow-lg p-1 bg-gray-100 dark:bg-gray-800 border-gray-200 dark:border-gray-700 -mt-8 lg:-mt-0 ml-4 lg:ml-8 lg:text-3xl border text-sm">
           {fullNamesMapping.get(currency.name)}
         </span>
-        <p className="font-twemoji">{currency.representation}</p> {currency.name}
+        <span className="font-twemoji">{currency.representation}</span> {currency.name}
       </th>
       <td className="px-2 py-1 md:px-6 xl:py-2 2xl:py-3">{Number(currency.buy).toFixed(4)}</td>
       <td className="px-2 py-1 md:px-6 xl:py-2 2xl:py-3">{Number(currency.sell).toFixed(4)}</td>
