@@ -10,7 +10,7 @@ export default function About() {
           </p>
           <p className="p-2 lg:p-4 text-gray-700 dark:text-gray-400">
             Kantor został wyróżniony nagrodą TOP 100 OF POLAND 2022, co&nbsp;potwierdza, że&nbsp;cieszymy się dużą
-            popularnością wśród Chełmian. Zapraszamy do okienka po najlepsze kursy wymiany&nbsp;walut!
+            popularnością wśród Chełmian. Zapraszamy po najlepsze kursy w&nbsp;mieście!
           </p>
         </div>
       </div>

@@ -11,12 +11,12 @@ export const metadata = {
   openGraph: {
     title: "Kantor FIFO Chełm",
     description: "Kantor Wymiany Walut. Najlepsze ceny",
-    url: "https://kantorfifo.pl",
+    url: "https://wwww.kantorfifo.pl",
     siteName: "Kantor FIFO Chełm",
     // TODO: Add correct image
     images: [
       {
-        url: "https://nextjs.org/og.png",
+        url: "https://wwww.kantorfifo.pl/api/og",
         width: 800,
         height: 600,
       },

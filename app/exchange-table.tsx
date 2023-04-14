@@ -2,16 +2,40 @@ import type { Currency, ExchangeTableData } from "../types";
 import { S3Client, GetObjectCommand } from "@aws-sdk/client-s3";
 
 function TableRow(currency: Currency) {
+  // currency name (like "USD") mapping to full name (like "United States dollar"). To be changed in future, when localization bill be introduced
+  const fullNamesMapping: Map<string, string> = new Map([
+    ["EUR", "Euro"],
+    ["USD", "Dolar amerykański"],
+    ["CHF", "Frank szwajcarski"],
+    ["GBP", "Brytyjski funt szterling"],
+    ["CAD", "Dolar kanadyjski"],
+    ["AUD", "Dolar australijski"],
+    ["SEK", "Korona szwedzka"],
+    ["NOK", "Korona norweska"],
+    ["DKK", "Korona duńska"],
+    ["UAH", "Hrywna"],
+    ["BGN", "Lew bułgarski"],
+    ["HUF", "Forint"],
+    ["CZK", "Korona czeska"],
+    ["RON", "Lej rumuński"],
+  ]);
+
   return (
     <tr
       key={currency.name}
       className="odd:bg-white even:bg-slate-50 bg-white border-b dark:odd:bg-gray-800 dark:even:bg-gray-700 dark:border-gray-700 font-medium text-base md:text-xl lg:text-3xl "
     >
-      <th scope="row" className="px-2 py-1 md:px-6 md:py-2 xl:py-3 whitespace-nowrap text-gray-900 dark:text-white">
+      <th
+        scope="row"
+        className="has-tooltip px-2 py-1 md:px-6 md:py-2 xl:py-3 whitespace-nowrap text-gray-900 dark:text-white"
+      >
+        <span className="tooltip rounded shadow-lg p-1 bg-gray-100 dark:bg-gray-800 border-gray-200 dark:border-gray-700 -mt-8 lg:-mt-0 ml-4 lg:ml-8 lg:text-3xl border text-sm">
+          {fullNamesMapping.get(currency.name)}
+        </span>
         <a className="font-twemoji">{currency.representation}</a> {currency.name}
       </th>
-      <td className="px-2 py-1 md:px-6 xl:py-2 2xl:py-3">{currency.buy}</td>
-      <td className="px-2 py-1 md:px-6 xl:py-2 2xl:py-3">{currency.sell}</td>
+      <td className="px-2 py-1 md:px-6 xl:py-2 2xl:py-3">{Number(currency.buy).toFixed(4)}</td>
+      <td className="px-2 py-1 md:px-6 xl:py-2 2xl:py-3">{Number(currency.sell).toFixed(4)}</td>
     </tr>
   );
 }
