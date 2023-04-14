@@ -10,7 +10,7 @@ export default function ContactCard() {
       <div className="p-2 md:p-4 rounded-md md:rounded-xl border-2 border-slate-200 dark:border-gray-700 bg-white dark:bg-gray-700 dark:text-white">
         <div className="grid grid-cols-2 grid-rows-2 gap-2 md:flex md:flex-row md:justify-evenly justify-items-center md:text-lg lg:text-2xl">
           <div>
-            <a>Chełm, Lwowska 9</a>
+            <p>Chełm, Lwowska 9</p>
           </div>
           <div className="inline-flex items-baseline">
             {/* <a
