@@ -5,10 +5,9 @@
 .tooltip {
     @apply invisible absolute;
   }
-  
-  .has-tooltip:hover .tooltip {
-    @apply visible z-50;
-  }
+.has-tooltip:hover .tooltip {
+  @apply visible z-50;
+}
   /* consider using https://tailwindcomponents.com/component/flip-tooltip for clip */
   /* .clip-bottom {
     clip-path: polygon(100% 50%, 0 0, 100% 0, 50% 100%, 0 0)

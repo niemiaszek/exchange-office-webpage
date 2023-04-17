@@ -6,3 +6,5 @@ User-agent: *
 Disallow: /login
 Disallow: /dashboard
 Disallow: /login_server
+
+Sitemap: https://www.kantorfifo.pl/sitemap.xml

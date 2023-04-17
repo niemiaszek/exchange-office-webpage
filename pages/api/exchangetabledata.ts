@@ -64,7 +64,7 @@ export default async function handler(req, res) {
           }
         }
         exchangeTableData.submitter = session.user.name
-        exchangeTableData.date = new Date().toLocaleString("pl-PL")
+        exchangeTableData.date = new Date().toLocaleString("pl-PL", {timeZone: "Europe/Warsaw"})
       }
       await S3.send(new PutObjectCommand({Body: JSON.stringify(exchangeTableData), Bucket: process.env.CLOUDFLARE_BUCKET_ID_DATA, Key: "data.json" }))
       // await fs.promises.writeFile('/tmp/data.json', JSON.stringify(exchangeTableData), 'utf8');

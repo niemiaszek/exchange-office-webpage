@@ -13,9 +13,9 @@ function TableRow(currency: Currency) {
     ["SEK", "Korona szwedzka"],
     ["NOK", "Korona norweska"],
     ["DKK", "Korona duńska"],
-    ["UAH", "Hrywna"],
+    ["UAH", "Hrywna ukraińska"],
     ["BGN", "Lew bułgarski"],
-    ["HUF", "Forint"],
+    ["HUF", "Forint węgierski"],
     ["CZK", "Korona czeska"],
     ["RON", "Lej rumuński"],
   ]);
