@@ -1,6 +1,7 @@
 import type {ExchangeTableData, Currency} from '../../types'
 import { getServerSession } from "next-auth/next"
 import { authOptions } from "./auth/[...nextauth]"
+
 import {
   S3Client,
   GetObjectCommand,
@@ -9,15 +10,8 @@ import {
 
 export default async function handler(req, res) {
   const session = await getServerSession(req, res, authOptions)
-  // let jsonDirectory = path.join(process.cwd(), 'data') + '/data.json';
-  // if (fs.existsSync('/tmp/data.json')) {
-  //   jsonDirectory = '/tmp/data.json';
-  // }
+  let username = ""
   
-  //Find the absolute path of the json directory
-  //Read the json data file data.json
-  // const fileContents = await fs.promises.readFile(jsonDirectory, 'utf8');
-
   const S3 = new S3Client({
     region: "auto",
     endpoint: `https://${process.env.CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com`,
@@ -26,6 +20,7 @@ export default async function handler(req, res) {
       secretAccessKey: process.env.CLOUDFLARE_SECRET_ACCESS_KEY,
     },
   });
+
   let dataStr = ""
   try {
     const data = await S3.send(
@@ -36,18 +31,34 @@ export default async function handler(req, res) {
     console.log(error);
     throw new Error("Failed to fetch ExchangeTableData");
   }
+
   const exchangeTableData: ExchangeTableData = JSON.parse(dataStr);
+
   if (req.method === 'POST') {
+    if (!session) {
+      const updaterSecret = req.headers["updater-secret"]  
+      if (updaterSecret == process.env.UPDATER_SECRET)
+      {
+        username = "Kantor" 
+      }
+      else {
+        res.status(500).json({ error: 'non-authenticated access' })
+        return
+      }
+    }
+    else {
+      username = session.user.name
+    }
+
     try {
-      let result = ""
       const body = req.body
+      console.log(body)
       // for now, ugly post-processing. Would be better to use Object.assing() with different data structure
       for (const [key, value] of Object.entries(body)){
-        // Check if value was passed
         if (!value) {
           continue;
         }
-        // TODO: Validate if passed value is valid
+        // TODO: Validate if passed value is valid number
 
         const postedParts = key.split(" ")
         const updatedCurrencyName = postedParts[1]
@@ -63,16 +74,14 @@ export default async function handler(req, res) {
             }
           }
         }
-        exchangeTableData.submitter = session.user.name
+        exchangeTableData.submitter = username
         exchangeTableData.date = new Date().toLocaleString("pl-PL", {timeZone: "Europe/Warsaw"})
       }
       await S3.send(new PutObjectCommand({Body: JSON.stringify(exchangeTableData), Bucket: process.env.CLOUDFLARE_BUCKET_ID_DATA, Key: "data.json" }))
-      // await fs.promises.writeFile('/tmp/data.json', JSON.stringify(exchangeTableData), 'utf8');
 
       const revalidated = await fetch(`${process.env.HOST_URL}api/revalidate?secret=${process.env.REVALIDATE}`)
       const msg = await revalidated.json()
       console.log(msg)
-      result = "Success"
       res.status(200).json({ msg })
     } catch (err) {
       console.log(err)
