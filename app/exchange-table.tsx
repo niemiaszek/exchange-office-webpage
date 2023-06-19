@@ -99,8 +99,9 @@ export default async function ExchangeTable() {
           </thead>
           <tbody>{exchangeTableData.currencies.map((currency) => TableRow(currency))}</tbody>
         </table>
-        <div className="text-right pt-2">
-          <a className="text-sm md:text-base text-gray-500">ostatnia aktualizacja: {exchangeTableData.date}</a>
+        <div className="text-center pt-2 text-sm md:text-base text-gray-500">
+          <p>Ceny są zależne od notowań na rynku międzybankowym i mogą ulec zmianie wiele razy w ciągu dnia. Zapytanie telefoniczne o cenę waluty nie jest jednoznaczne z potwierdzeniem transakcji.</p><br />
+          <p>Ostatnia aktualizacja: {exchangeTableData.date}</p>
         </div>
       </div>
     </div>
