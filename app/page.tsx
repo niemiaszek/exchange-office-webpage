@@ -4,6 +4,7 @@ import ContactCard from "./contact-card";
 import About from "./about";
 import Galery from "./galery";
 import Opinions from "./opinions";
+import OpeningHours from "./opening-hours";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
         {/* @ts-expect-error Async Server Component */}
         <ExchangeTable />
         <ContactCard />
+        <OpeningHours />
         <About />
         {/* <Galery />
         <Opinions /> */}
