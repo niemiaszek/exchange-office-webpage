@@ -30,8 +30,8 @@ export default async function Announcement() {
     return (
       <div className="w-screen p-3 md:p-5 md:pt-0">
         <div className="p-2 md:p-4 rounded-md md:rounded-xl border-2 border-slate-200 dark:border-gray-700 bg-white dark:bg-gray-700 items-center">
-          <div className="mx-auto lg:w-3/5 flex flex-col p-2 3xl:text-center text-lg md:text-xl lg:text-2xl xl:text-3xl">
-            <h2 className="text-3xl font-bold p-2 pt-0 lg:text-4xl xl:text-5xl dark:text-white lg:text-center">Ogłoszenie</h2>
+          <div className="mx-auto lg:w-3/5 flex flex-col p-2 lg:text-center text-lg md:text-xl lg:text-2xl xl:text-3xl">
+            <h2 className="text-3xl font-bold p-2 pt-0 lg:text-4xl xl:text-5xl dark:text-white">Ogłoszenie</h2>
             <p className="p-2 lg:p-4 text-gray-700 dark:text-gray-400">
               {announcement.announcement}
             </p>
