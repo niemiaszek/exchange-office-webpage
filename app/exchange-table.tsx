@@ -18,6 +18,8 @@ function TableRow(currency: Currency) {
     ["HUF", "Forint węgierski"],
     ["CZK", "Korona czeska"],
     ["RON", "Lej rumuński"],
+    ["TRY", "Lira turecka"],
+    ["JPY", "Jen japoński"]
   ]);
 
   return (
