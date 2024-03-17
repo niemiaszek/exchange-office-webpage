@@ -19,7 +19,10 @@ function TableRow(currency: Currency) {
     ["CZK", "Korona czeska"],
     ["RON", "Lej rumuński"],
     ["TRY", "Lira turecka"],
-    ["JPY", "Jen japoński"]
+    ["JPY", "Jen japoński"],
+    ["ALL", "Lek albański"],
+    ["AED", "Dirham Zjednoczonych Emiratów Arabskich"],
+    ["ILS", "Nowy izraelski szekel"]
   ]);
 
   return (
