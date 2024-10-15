@@ -23,7 +23,8 @@ function TableRow(currency: Currency) {
     ["ALL", "Lek albański"],
     ["AED", "Dirham Zjednoczonych Emiratów Arabskich"],
     ["ILS", "Nowy izraelski szekel"],
-    ["GEL", "Lari gruziński"]
+    ["GEL", "Lari gruziński"],
+    ["THB", "Bat tajlandzki"]
   ]);
 
   return (
