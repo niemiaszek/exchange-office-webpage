@@ -5,7 +5,6 @@ function TableRow(currency: Currency) {
   // currency name (like "USD") mapping to full name (like "United States dollar"). To be changed in future, when localization bill be introduced
   const fullNamesMapping: Map<string, string> = new Map([
     ["EUR", "Euro"],
-    ["EUB", "Euro - Bilon"],
     ["USD", "Dolar amerykański"],
     ["CHF", "Frank szwajcarski"],
     ["GBP", "Brytyjski funt szterling"],
