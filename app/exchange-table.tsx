@@ -25,6 +25,9 @@ function TableRow(currency: Currency) {
     ["ILS", "Nowy izraelski szekel"],
     ["GEL", "Lari gruziński"],
     ["THB", "Bat tajlandzki"],
+    ["RUB", "Rubel rosyjski"],
+    ["CNY", "Juan chiński"],
+    ["RSD", "Dinar serbski"],
     ["ISK", "Korona islandzka"],
   ]);
 
